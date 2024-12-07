@@ -81,7 +81,7 @@ public class ControladorDeOpciones {
                     kmp.buscarPatrónDeTexto(texto, patrón);
                 }
                 case 3 ->
-                        System.out.println("Método Boyer-Moore no implementado."); // Placeholder para un futuro método
+                        System.out.println("TODAVÍA NO EXISTE"); // Placeholder para una futura función
             }
 
             // Preguntar al usuario si desea continuar o salir
