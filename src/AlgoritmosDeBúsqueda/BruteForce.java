@@ -11,7 +11,7 @@ import java.util.List;
 public class BruteForce extends AlgoritmoDeBúsqueda {
 
     /**
-     * Busca todas las apariciones del patrón en el texto usando el método de fuerza bruta.
+     * Busca todas las apariciones del patrón en el texto usando la función de fuerza bruta.
      *
      * @param texto  El texto donde se buscará el patrón.
      * @param patrón El patrón que se desea buscar.

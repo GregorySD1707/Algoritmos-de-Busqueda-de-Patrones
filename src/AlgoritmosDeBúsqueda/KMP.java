@@ -23,8 +23,8 @@ public class KMP extends AlgoritmoDeBúsqueda {
         int m = patrón.length(); // Longitud del patrón
         List<Integer> posiciones = new ArrayList<>(); // Lista para almacenar las posiciones de coincidencia
 
-        // Preprocesar el patrón para construir el arreglo LPS
-        int[] lps = computeLPSArray(patrón);
+        // Pre-procesar el patrón para construir el arreglo LPS
+        int[] lps = determinarTablaLPS(patrón);
 
         int i = 0; // Índice del texto
         int j = 0; // Índice del patrón
@@ -39,13 +39,13 @@ public class KMP extends AlgoritmoDeBúsqueda {
                 j++;
             }
 
-            // Si se encontró una coincidencia completa
+            // Sí se encontró una coincidencia completa
             if (j == m) {
                 incrementarApariciones(); // Incrementar el contador de apariciones
                 posiciones.add(i - j); // Agregar la posición de inicio a la lista
                 j = lps[j - 1]; // Ajustar índice del patrón utilizando el arreglo LPS
             } else if (i < n && patrón.charAt(j) != texto.charAt(i)) {
-                // Si hay un desajuste entre el patrón y el texto
+                // Sí hay un desajuste entre el patrón y el texto
                 incrementarComparaciones(); // Incrementar el contador de comparaciones (fallida)
                 incrementarFallos(); // Incrementar el contador de fallos
                 incrementarDesplazamientos(); // Incrementar el contador de desplazamientos
@@ -70,7 +70,7 @@ public class KMP extends AlgoritmoDeBúsqueda {
      * @param patrón El patrón para el cual se calculará el arreglo LPS.
      * @return Un arreglo LPS donde cada elemento indica el prefijo más largo que también es sufijo.
      */
-    private int[] computeLPSArray(String patrón) {
+    private int[] determinarTablaLPS(String patrón) {
         int m = patrón.length();
         int[] lps = new int[m]; // Inicializar el arreglo LPS
         int len = 0; // Longitud del prefijo más largo que también es sufijo
