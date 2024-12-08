@@ -29,7 +29,7 @@ public class BruteForce extends AlgoritmoDeBúsqueda {
 
             // Comparar carácter por carácter
             while (j < m && texto.charAt(i + j) == patrón.charAt(j)) {
-                incrementarComparaciones(); // Incrementar el contador de comparaciones
+                incrementarComparaciones();
                 incrementarCoincidencias(); // Incrementar el contador de coincidencias
                 j++;
             }
@@ -40,11 +40,12 @@ public class BruteForce extends AlgoritmoDeBúsqueda {
                 posiciones.add(i); // Agregar la posición de inicio a la lista
             } else {
                 // Si no se encontró coincidencia, se registran métricas adicionales
+                incrementarComparaciones();
                 incrementarDesplazamientos(); // Incrementar el contador de desplazamientos
-                incrementarComparaciones(); // Incrementar el contador de comparaciones (fallida)
                 incrementarFallos(); // Incrementar el contador de fallos
             }
         }
+
 
         double tiempoFin = (System.nanoTime() - tiempoInicio) / 1e6; // Tiempo de fin de la ejecución
         imprimirResultados(tiempoFin, posiciones); // Imprimir resultados

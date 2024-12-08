@@ -1,5 +1,5 @@
 import AlgoritmosDeBúsqueda.BruteForce;
-import AlgoritmosDeBúsqueda.KMP;
+import AlgoritmosDeBúsqueda.KMP4Casos;
 
 import java.util.Scanner;
 
@@ -14,61 +14,23 @@ public class ControladorDeOpciones {
      * función de búsqueda. Se ejecuta en un bucle hasta que el usuario decida finalizar.
      */
     public void controlarOpciones() {
-        String texto = "";  // Variable para almacenar el texto seleccionado
-        String patrón = ""; // Variable para almacenar el patrón seleccionado
+        String texto = "babcbabcabcaabcabcabcacabc";  // Variable para almacenar el texto seleccionado
+        String patrón = "abcabcacab"; // Variable para almacenar el patrón seleccionado
 
         Scanner sc = new Scanner(System.in); // Objeto Scanner para capturar entradas del usuario
         int opción; // Variable para capturar la elección del usuario
-
-        do {
-            // Mostrar las opciones de texto y patrón disponibles
-            System.out.println("""
-                    Escoja el texto y patrón a utilizar en la búsqueda:
-                    1.  T = babcbabcabcaabcabcabcacabc
-                        P = abcabcacab
-                    2.  T = CTAAAGATGATCTTTAGTCCCGGTTCGAA
-                        P = GAT
-                    3.  T = TTATAGATCTCGTATTCTTTTATAGATCTCCTATTCTT
-                        P = TCCTATTCTT
-                    4.  T = AUG CUA GCA UCG (molécula ARNm)
-                        P = GCA
-                    """);
-
-            // Validar que el usuario ingrese una opción entre 1 y 4
-            opción = obtenerOpciónValida(sc, 1, 4);
-
-            // Asignar texto y patrón según la opción seleccionada
-            switch (opción) {
-                case 1 -> {
-                    texto = "babcbabcabcaabcabcabcacabc";
-                    patrón = "abcabcacab";
-                }
-                case 2 -> {
-                    texto = "CTAAAGATGATCTTTAGTCCCGGTTCGAA";
-                    patrón = "GAT";
-                }
-                case 3 -> {
-                    texto = "TTATAGATCTCGTATTCTTTTATAGATCTCCTATTCTT";
-                    patrón = "TCCTATTCTT";
-                }
-                case 4 -> {
-                    texto = "AUG CUA GCA UCG";
-                    patrón = "GCA";
-                }
-                default ->
-                        System.out.println("Opción no válida, por favor inténtelo de nuevo."); // Este caso no debería ocurrir
-            }
+        do{
 
             // Mostrar las opciones de métodos de búsqueda
             System.out.println("""
+                    Se usará el texto 'T = babcbabcabcaabcabcabcacab' y el patrón 'P = abcabcacab'
                     Escoja un método de búsqueda de patrones:
                     1. Brute Force (BF)
                     2. Knuth-Morris-Pratt (KMP)
-                    3. Boyer-Moore (BM)
                     """);
 
-            // Validar que el usuario seleccione una función entre 1 y 3
-            opción = obtenerOpciónValida(sc, 1, 3);
+            // Validar que el usuario seleccione una función entre 1 y 2
+            opción = obtenerOpciónValida(sc, 1, 2);
 
             // Ejecutar el algoritmo de búsqueda según la opción seleccionada
             switch (opción) {
@@ -77,11 +39,12 @@ public class ControladorDeOpciones {
                     bruteForce.buscarPatrónDeTexto(texto, patrón);
                 }
                 case 2 -> {
-                    KMP kmp = new KMP();
-                    kmp.buscarPatrónDeTexto(texto, patrón);
+                    //KMP kmp = new KMP();
+                    //kmp.buscarPatrónDeTexto(texto, patrón);
+                    KMP4Casos kmp4Casos = new KMP4Casos();
+                    kmp4Casos.buscarPatrónDeTexto(texto, patrón);
                 }
-                case 3 ->
-                        System.out.println("TODAVÍA NO EXISTE"); // Placeholder para una futura función
+
             }
 
             // Preguntar al usuario si desea continuar o salir
@@ -113,7 +76,7 @@ public class ControladorDeOpciones {
                     return opción; // Retornar la opción si es válida
                 } else {
                     // Informar al usuario que debe ingresar un valor dentro del rango
-                    System.out.printf("Por favor, ingrese un valor entre %d y %d.\n", min, max);
+                    System.out.printf("Por favor, ingrese un valor entre " + min + " y "+ max);
                 }
             } catch (Exception e) {
                 // Manejar entradas no válidas (por ejemplo, caracteres en lugar de números)
